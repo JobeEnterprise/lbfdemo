@@ -55,13 +55,29 @@
     }
 
     .modal-content {
-        background-color: #fefefe;
-        margin: 10% auto;
-        padding: 20px;
-        border: 1px solid #888;
-        width: 80%;
-        max-width: 800px;
+      background-color: #fefefe;
+      margin: 10% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 800px;
+      height: auto; /* Ensure the height adjusts automatically */
+      max-height: 90vh; /* Avoid overflowing */
     }
+
+    @media screen and (max-width: 768px) {
+    .modal-content {
+        width: 95%; /* Make the modal almost full-width on mobile */
+        height: 90%; /* Increase the height to fill more of the screen */
+        margin: 5% auto; /* Adjust margin to bring the modal closer to the top */
+        padding: 10px; /* Reduce padding to optimize space for smaller screens */
+    }
+    }
+
+    .no-scroll {
+            overflow: hidden; /* Prevents scrolling */
+            height: 100%; /* Ensure the height is fixed to prevent scrollbars */
+        }
 
     .close-button {
         color: #aaa;
@@ -1212,7 +1228,7 @@ for (var attr in meta) {
   <a class="in-page-link visually-hidden skip-link" href="#MainContent">Skip to content</a>
   
   <div class="sticky-banner">
-    <p>This site is for demo purposes only. Notice the "See in 3D" button. <a href="https://zcal.co/ayham/generalmeeting" target="_blank">Book a 15-minute chat now to see how we can help you. </a></p>
+    <p>This site is for demo purposes only. Try the "See in 3D" button. <a href="https://zcal.co/ayham/generalmeeting" target="_blank">Book a 15-minute chat now to see how we can help you. </a></p>
   </div>
   <button type="button"
           class="slide-nav__button js-toggle-submenu"
@@ -4328,10 +4344,14 @@ for (var attr in meta) {
 <script>
         function open3DView() {
             document.getElementById("threeDModal").style.display = "block";
+            document.body.classList.add("no-scroll"); // Add a class to disable scrolling
+
         }
 
         function close3DView() {
             document.getElementById("threeDModal").style.display = "none";
+            document.body.classList.remove("no-scroll"); // Remove the class to enable scrolling
+
         }
     </script>
 
